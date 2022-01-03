@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  :root {
+    --background-color: #ffffff;
+    --font-color: #212121;
+    --backgroundDiv-color: #F4F4F4;
+    --operator-color: #F7F7F7;
+    --number-color: #FDFDFD;
+  }
+
+  .outerDiv{
+      width: 100%;
+      padding: 10px 20px;
+      background-color: var(--background-color);
+  }
+
+  .calBody{
+      display: flex;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 700px;
+      /* min-width: 500px; */
+      height: 600px;
+      background-color: var(--backgroundDiv-color);
+      color: var(--font-color);
+  }
+
+  @media (min-width: 800px) {
+      .outerDiv{
+          width: 100%;
+          padding: 20px 100px;
+      }
+
+      .calBody{
+          min-width: 500px;
+          max-width: 700px;
+      }
+  }
