@@ -52,13 +52,21 @@
   }
 
 
-  .outputDiv{
-      display: flex;
-      justify-content: flex-end;
-      width: 100%;
-      padding: 20px;
-      font-size: 55px;
-      font-weight: bold;
+  input{
+    float: right;
+    height: 60px;
+    text-align: right;
+    background-color: transparent;
+    width: 100%;
+    text-size-adjust: 80%;
+    padding: 20px 5px;
+    font-size: 55px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    unicode-bidi:bidi-override;
+    -webkit-appearance: none;
+
   }
 
   i{
