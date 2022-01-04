@@ -4,13 +4,135 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="scientific_calculator.js"></script>
+
     <link rel="stylesheet" href="index.css">
     <title>Scientific calculator</title>
 </head>
 <body>
     <div class="outerDiv">
         <div class="calBody">
-            
+            <div class="calRowDiv">
+                <div class="outputDiv">
+                    0
+                </div>
+            </div>
+
+            <div class="calRowDiv flexBeside">
+                <div class="button transparentButton bold">
+                    DEG
+                </div>
+                <div class="button transparentButton bold">
+                    F-E
+                </div>
+            </div>
+
+            <div class="calRowDiv">
+                <div class="button transparentButton greyFont bold">
+                    MC
+                </div>
+                <div class="button transparentButton greyFont bold">
+                    MR
+                </div>
+                <div class="button transparentButton bold">
+                    M+
+                </div>
+                <div class="button transparentButton bold">
+                    M-
+                </div>
+                <div class="button transparentButton bold">
+                    MS
+                </div>
+            </div>
+
+            <div class="calRowDiv flexBeside">
+                <div class="button transparentButton longbutton bold dropdown">
+                    <div>
+                        <font>𝚫</font>
+                        Trigonometric  
+                        <i class="fa fa-angle-down"></i>
+                    </div>
+
+                    <div class="dropdown-content">
+                        <button value="Math.sin(" onclick="updateExpresion(this.value)">Sin()</button>
+                        <button value="Math.cos(" onclick="updateExpresion(this.value)">Cos()</button>
+                        <button value="Math.tan(" onclick="updateExpresion(this.value)">Tan()</button>
+                    </div>
+                </div>
+
+                <div class="button transparentButton longbutton bold dropdown">
+                    <div>
+                        <font>⨏</font>
+                        Function
+                        <i class="fa fa-angle-down"></i>
+                    </div>
+                    <div class="dropdown-content">
+                        <button value="Math.sin(" onclick="updateExpresion(this.value)">Sin()</button>
+                        <button value="Math.cos(" onclick="updateExpresion(this.value)">Cos()</button>
+                        <button value="Math.tan(" onclick="updateExpresion(this.value)">Tan()</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="calRowDiv">
+                <button>2<sup>nd</sup></button>
+                <button value="Math.PI" onclick="updateExpresion(this.value)" >&pi;</button>
+                <button value="2.7182818284" onclick="updateExpresion(this.value)">e</button>
+                <button value="clear" onclick="updateExpresion(this.value)">C</button>
+                <button value="CL" onclick="updateExpresion(this.value)">⌫</button>
+            </div>
+
+
+            <div class="calRowDiv">
+                <button value="Math.pow(,2)" onclick="updateExpresion(this.value)">&#119909;²</button>
+                <button value="1/" onclick="updateExpresion(this.value)">1/&#119909;</button>
+                <button value="|" onclick="updateExpresion(this.value)">|&#119909;|</button>
+                <button value="Math.exp(" onclick="updateExpresion(this.value)">exp</button>
+                <button value="%" onclick="updateExpresion(this.value)">mod</button>
+            </div>
+
+            <div class="calRowDiv">
+                <button value="Math.sqrt(" onclick="updateExpresion(this.value)">&#178;&#8730;&#119909;</button>
+                <button value="(" onclick="updateExpresion(this.value)">(</button>
+                <button value=")" onclick="updateExpresion(this.value)">)</button>
+                <button value="!" onclick="updateExpresion(this.value)">n!</button>
+                <button value="/" onclick="updateExpresion(this.value)">&#247;</button>
+            </div>
+
+            <div class="calRowDiv">
+                <button value="Math.pow(" onclick="updateExpresion(this.value)">&#119909;<sup>&#x79;</sup></button>
+                <button class="operand" value="7" onclick="updateExpresion(this.value)">7</button>
+                <button class="operand" value="8" onclick="updateExpresion(this.value)">8</button>
+                <button class="operand" value="9" onclick="updateExpresion(this.value)">9</button>
+                <button value="*" onclick="updateExpresion(this.value)">&#215;</button>
+            </div>
+
+            <div class="calRowDiv">
+                <button value="Math.pow(10," onclick="updateExpresion(this.value)">10<sup>&#119909;</sup></button>
+                <button class="operand" value="4" onclick="updateExpresion(this.value)">4</button>
+                <button class="operand" value="5" onclick="updateExpresion(this.value)">5</button>
+                <button class="operand" value="6" onclick="updateExpresion(this.value)">6</button>
+                <button value="-" onclick="updateExpresion(this.value)">&#8722;</button>
+            </div>
+
+            <div class="calRowDiv">
+                <button value="Math.log(" onclick="updateExpresion(this.value)">log</button>
+                <button class="operand" value="1" onclick="updateExpresion(this.value)">1</button>
+                <button class="operand" value="2" onclick="updateExpresion(this.value)">2</button>
+                <button class="operand" value="3" onclick="updateExpresion(this.value)">3</button>
+                <button value="+" onclick="updateExpresion(this.value)">&#43;</button>
+            </div>
+
+            <div class="calRowDiv">
+                <button value="Math.ln(" onclick="updateExpresion(this.value)">ln</button>
+                <button value="," onclick="updateExpresion(this.value)">,</button>
+                <button class="operand" value="0" onclick="updateExpresion(this.value)">0</button>
+                <button>.</button>
+                <button class="equalto" value="=" onclick="updateExpresion(this.value)">=</button>
+            </div>
         </div>
     </div>
 </body>
