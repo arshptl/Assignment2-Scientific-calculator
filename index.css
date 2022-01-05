@@ -159,6 +159,17 @@
       display: flex;
   }
 
+  hr{
+      margin: 5px 0;
+      border: 0;
+  }
+
+  #memory{
+    background-color: var(--operator-color);
+    width: 100%;
+    padding: 10px;
+  }
+
 
   @media (min-width: 800px) {
       .outerDiv{
