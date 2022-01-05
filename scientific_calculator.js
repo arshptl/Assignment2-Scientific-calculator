@@ -33,11 +33,12 @@ var expression = (() => {
         document.getElementById('dis').value = expression.getValue();
     }
     var factorial = function () {
-        expression = expression.slice(0, expression.length);
-        number = Number(expression);
+        // expression = expression.slice(0, expression.length);
+        number = Number(value);
         factofNumber = 1;
         for (i = 2; i <= number; i++)
             factofNumber = factofNumber * i;
+        expression.setValue(factofNumber);
         document.getElementById("dis").value = factofNumber.toString();
     }
 
@@ -45,23 +46,25 @@ var expression = (() => {
     return {
         updateExpression1: function (a) {
             console.log("in private");
-            if (a == "Math.PI") {
-                addPI();
+            switch (a) {
+                case "Math.PI":
+                    addPI();
+                    break;
+                case "=":
+                    getResult();
+                    break;
+                case "clear":
+                    clear_display();
+                    break;
+                case "CL":
+                    clear_last_digit();
+                    break;
+                case "!":
+                    factorial();
+                    break;
+                default:
+                    setExpresion(a);
             }
-            else if (a == "=") {
-                getResult();
-            }
-            else if (a == "clear") {
-                clear_display();
-            }
-            else if (a == "CL") {
-                clear_last_digit();
-            }
-            else if (a == "!") {
-                factorial();
-            }
-            else
-                setExpresion(a);
         },
         setValue: function (v) {
             value = v;
