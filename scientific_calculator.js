@@ -1,148 +1,232 @@
+// used module pattern concept to increase security 
 var expression = (() => {
+
+    // below declare is all private variables
+    // declare variables with it's DOM element
+    // use below var to access DOM , it more faster then accessing dom by getElement()
     var dis = document.getElementById('dis');
+    var memoryPart = document.getElementById('memory');
+    var xCube = document.getElementById("x3");
+    var cubeRoot = document.getElementById("cbrt");
+    var yRootX = document.getElementById("yRootx");
+    var twoRaisedX = document.getElementById("2x");
+    var eRaisedX = document.getElementById("ex");
+    var logyX = document.getElementById("logyx");
+
+    //display value
     var value = "0";
+    // variable for memory value
     var memoryValue = [];
+    //toggle button
+    var toggleValue = true;
 
-
-    var setExpresion = function (a) {
+    // below is all private variable , that can't be access by outside function 
+    // function to set expression in display
+    var setExpresion = (a) => {
         if (value == "0") { value = ""; }
         value += a;
         dis.value = value;
     }
 
-    var addPI = function () {
-        expression.updateExpression1(Math.PI.toFixed(6));
-        dis.value = expression.getValue();
+    // to add PI value in expression
+    var addPI = () => {
+        setExpresion(Math.PI.toFixed(6));
+        dis.value = value;
     }
-    var getResult = function () {
-        x = expression.getValue();
-        if (x.includes("|-")) {
-            x = x.slice(2, -1)
-            final_answer = x;
+
+    //to get result of expression
+    var getResult = () => {
+        // condition to for '| |' math operation
+        if (value.includes("|-")) {
+            value = value.slice(2, -1)
+            final_answer = value;
         }
-        else if (x) {
-            final_answer = eval(x);
+        //calculate expression
+        else if (value) {
+            final_answer = eval(value);
         }
         else
             final_answer = "0";
-        expression.setValue(final_answer.toString());
-        dis.value = expression.getValue();
-    }
-    var clear_display = function () {
-        expression.setValue(0);
-        setExpresion(0);
+        //set value(variable) with final answer
+        value = final_answer.toString();
+        // display final answer
+        dis.value = value
     }
 
-    var clear_last_digit = function () {
-        e = expression.getValue();
-        e = e.slice(0, e.length - 1);
-        if (!e.length) { expression.setValue(0); }
-        else expression.setValue(e);
-        dis.value = expression.getValue();
+    // function to clear screen
+    var clear_display = () => {
+        value = 0;
+        setExpresion(value);
     }
-    var factorial = function () {
+    // function to clear last digit
+    var clear_last_digit = () => {
+        value = value.slice(0, value.length - 1);
+        if (!value.length) { value = 0; }
+        dis.value = value;
+    }
+
+    // for calculate the factorial
+    var factorial = () => {
         number = Number(value);
         factofNumber = 1;
         for (i = 2; i <= number; i++)
             factofNumber = factofNumber * i;
-        expression.setValue(factofNumber);
-        document.getElementById("dis").value = factofNumber.toString();
+        value = factofNumber;
+        dis.value = value.toString();
     }
 
+    // for generate random value
     var getRandomValue = () => {
         randValue = Math.random();
-        e = expression.getValue();
-        if (e.length) {
-            //window.alert(e.length);
+        if (value) {
             setExpresion(randValue);
         }
-        e = randValue.toString();
-        expression.setValue(e);
-        document.getElementById("dis").value = expression.getValue();
+        else {
+            value = randValue.toString();
+            dis.value = value;
+        }
     }
 
-    var e_raised_to_x = function () {
+    // for calculate e Raised to x value
+    var e_raised_to_x = () => {
         lastDigit = value.slice(-1);
-        final_answer = Math.pow(Math.PI.toFixed(3), lastDigit);
-        expression.setValue(value.slice(0, -1));
+        final_answer = Math.pow(2.7182, lastDigit);
+        value = value.slice(0, -1);
         setExpresion(final_answer);
     }
-    var cube = function () {
+
+    // for calculate cube value
+    var cube = () => {
         lastDigit = value.slice(-1);
         final_answer = Math.pow(lastDigit, 3);
+        value = value.slice(0, -1);
+        setExpresion(final_answer);
+    }
+
+    // for calculate squre value
+    var squre = function () {
+        lastDigit = value.slice(-1);
+        final_answer = Math.pow(lastDigit, 2);
         expression.setValue(value.slice(0, -1));
         setExpresion(final_answer);
     }
+
+    // for set floor value
     var setFloorValue = (a) => {
-        value = expression.getValue();
+        // condition to set floor down
         if (a == "fd")
             value = Math.floor(value);
+        // condition to set floor up
         else
             value = parseInt(Number(value) + 1);
-        expression.setValue(value);
-        document.getElementById("dis").value = expression.getValue();
-
+        // set display content
+        dis.value = value;
     }
 
-    var changeFunction = function () {
-        document.getElementById("x3").innerText = "x3";
-        document.getElementById("x3").value = "x3";
+    // for button that change some math function with some new functions
+    var changeFunction = () => {
 
-        document.getElementById("cbrt").innerText = "3√x";
-        document.getElementById("cbrt").value = "Math.cbrt(";
+        if (toggleValue) {
+            xCube.innerText = "x3";
+            xCube.value = "x3";
 
-        document.getElementById("yRootx").innerText = "y√x";
-        document.getElementById("yRootx").value = "Math.pow(";
+            cubeRoot.innerText = "3√x";
+            cubeRoot.value = "Math.cbrt(";
 
-        document.getElementById("2x").innerText = "2^x";
-        document.getElementById("2x").value = "Math.pow(2,";
+            yRootX.innerText = "y√x";
+            yRootX.value = "Math.pow(";
 
-        document.getElementById("logyx").innerText = "logyX";
+            twoRaisedX.innerText = "2^x";
+            twoRaisedX.value = "Math.pow(2,";
 
-        document.getElementById("ex").innerText = "eX";
-        document.getElementById("ex").value = "ex";
+            logyX.innerText = "logyX";
+
+            eRaisedX.innerText = "eX";
+            eRaisedX.value = "ex";
+
+            toggleValue = !toggleValue;
+        }
+        else {
+            document.getElementById("x3").innerText = "x²";
+            document.getElementById("x3").value = "x2";
+
+
+            cubeRoot.innerText = '2√x';
+            cubeRoot.value = "Math.sqrt(";
+
+            yRootX.innerText = 'x^y';
+            yRootX.value = "Math.pow(";
+
+            twoRaisedX.innerText = '10^x';
+            twoRaisedX.value = "Math.pow(10,";
+
+            logyX.innerText = "log";
+
+            eRaisedX.innerText = "ln";
+            eRaisedX.value = "ln";
+
+            toggleValue = !toggleValue;
+        }
     }
 
+    // set diaplay value in exponent form
     var EF = () => {
-        v = Number(expression.getValue());
+        v = Number(value);
         v = v.toExponential();
-        expression.setValue(0);
+        value = 0;
         setExpresion(v);
     }
 
+    // calculate all memory functions
     var memoryFunction = (id) => {
         switch (id) {
+            // to save display answer in memory
             case "MS":
                 memoryValue.unshift(Number(value));
                 break;
+            // to clear all value in memory
             case "MC":
                 memoryValue = [];
                 break;
+            // to add display vlaue with memory value
             case "M+":
                 if (memoryValue[0])
                     memoryValue[0] += Number(value);
                 break;
+            // to subtract display vlaue with memory value
             case "M-":
                 if (memoryValue[0])
                     memoryValue[0] -= Number(value);
                 break;
+            // to recall latest vlaue in memory
             case "MR":
-                console.log(memoryValue)
-                if (memoryValue[0])
+                if (memoryValue[0]) {
                     lastValue = memoryValue[0];
                     setExpresion(lastValue);
+                }
                 break;
         }
-        document.getElementById("memory").innerHTML = (memoryValue.length === 0 ? "Empty Memory (Use <b>MS</b> to store memory)" : memoryValue);
+        // to add reslut in memory vlaue
+        memoryPart.innerHTML = memoryValue.length === 0 ? "Empty Memory (Use <b>MS</b> to store memory)" : memoryValue;
+    }
+
+    var findln = function () {
+        let number = Number(value);
+        let final_answer = Math.log(number) / Math.log(2.71828);
+        value = final_answer;
+        dis.value = value;
     }
 
 
+    // to calculate trignometry functions
     var mathFunction = (func) => {
+        // get the degree from the user
         degrees = value.slice(-2);
         value = value.slice(0, value.length - 2);
-        console.log("degree is " + degrees);
+        // convert degree into radius
         var radians = (degrees * Math.PI) / 180;
         var final_answer = 0;
+        // calculate final answer according user given function
         switch (func) {
             case "sin":
                 final_answer = Math.sin(radians);
@@ -163,13 +247,16 @@ var expression = (() => {
                 final_answer = 1 / Math.tan(radians);
                 break;
         }
+        // set expression vlaue with final answer
         setExpresion(final_answer.toFixed(2));
     }
 
-
+    /**  return public function that act as intermediate 
+    between private function and user's public function */
     return {
-        updateExpression1: function (a) {
-            console.log("in private");
+
+        // return public functin updateExpression1 to manipulate private values
+        updateExpression1: (a) => {
             switch (a) {
                 case "Math.PI":
                     addPI();
@@ -195,55 +282,65 @@ var expression = (() => {
                 case "x3":
                     cube();
                     break;
+                case "x2":
+                    squre();
+                    break;
                 case "fu":
                     setFloorValue(a);
                     break;
                 case "fd":
                     setFloorValue(a);
                     break;
+                case "ln":
+                    findln();
+                    break;
+                case "deg":
+                    changeAngle();
+                    break;
                 default:
                     setExpresion(a);
             }
         },
-        setValue: function (v) {
+        // public function that set private variable value
+        setValue: (v) => {
             value = v;
         },
-        getValue() {
-            return value;
-        },
+        // return some more public function
         changeFunction: changeFunction,
         memoryFunction: memoryFunction,
         mathFunction: mathFunction,
-        EF: EF
+        EF: EF,
     };
 }
 )();
 
 
 
-expression.setValue(0);
-
+// to update expression
 function updateExpresion(a) {
     expression.updateExpression1(a);
 }
 
+// to update funcitons
 function updateFunction() {
     expression.changeFunction();
 }
 
+// to manipulate memory value
 function memoryFunction1(id) {
     expression.memoryFunction(id);
 }
+// to calculate trignometry functions
 function calculateTrigo(func) {
     expression.mathFunction(func);
 }
+// to set display value into exponential form
 function setEF() {
     expression.EF();
 }
 
+// if you want to add something between expression
 function inputBetweenExp() {
     displayValue = document.getElementById("dis").value;
     expression.setValue(displayValue);
 }
-
-
